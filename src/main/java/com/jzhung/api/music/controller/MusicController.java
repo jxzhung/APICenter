@@ -1,7 +1,6 @@
-package com.jzhung.api.word.controller;
+package com.jzhung.api.music.controller;
 
 import com.jzhung.api.util.JsonData;
-import com.jzhung.api.word.bean.Word;
 import com.jzhung.api.word.service.WordService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,23 +11,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 单词翻译API
+ * Created by Jzhung on 2016/11/24.
  */
 @Controller
-@RequestMapping("/api/word")
-public class WordController {
-    private Logger logger = Logger.getLogger(WordController.class);
+@RequestMapping("/api/music")
+public class MusicController {
+    private Logger logger = Logger.getLogger(MusicController.class);
     @Autowired
     WordService wordService;
 
-    @RequestMapping(value = "/{word}", method = RequestMethod.GET)
+    @RequestMapping(value = "/album/{b}", method = RequestMethod.GET)
     @ResponseBody
-    public JsonData translate(@PathVariable("word") String word) {
-        Word wm = wordService.searchWord(word);
+    public JsonData getAllAlbum(@PathVariable("b") String albumId) {
         JsonData jsonData = new JsonData();
         jsonData.setMsg("SUCCESS");
-        jsonData.setData(wm);
-        logger.info("word:" + wm);
+        jsonData.setData("");
         return jsonData;
     }
 }
