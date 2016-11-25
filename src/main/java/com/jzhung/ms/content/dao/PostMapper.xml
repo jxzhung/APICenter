@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jzhung.ms.content.dao.PostMapper">
+	<resultMap id="PostMapper" type="com.jzhung.ms.content.po.Post" >
+	    <id column="postId" property="postId"/>
+	    <result column="title" property="title"/>
+	    <result column="type" property="type"/>
+	    <result column="author" property="author"/>
+	    <result column="schedule" property="schedule"/>
+	    <result column="res" property="res"/>
+	    <result column="remark" property="remark"/>
+	</resultMap>
+ 
+	<select id="getPostById"  resultMap="RecoderMap" parameterType="int">
+		select * from recoder where rid=#{rid}
+	</select>
+
+	<insert id="save"  parameterType="Recoder">
+		insert into recoder(time,ispay,charge,schedule,res,remark,cid,gid,sid,hid) values(#{time},#{ispay},#{charge},#{schedule},#{res},#{remark},#{customer.cid},#{group.gid},#{service.sid},#{handler.hid})
+	</insert>
+
+
+	<select id="getAllPosts" resultMap="PostMapper">
+		select * from post
+	</select>
+
+</mapper>
